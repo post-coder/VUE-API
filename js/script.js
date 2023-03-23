@@ -6,30 +6,46 @@ createApp({
 
   data() {
     return {
-      userNumber: null,
-      pcNumber: null,
+      
+      emails: [],
     }
   },
 
   created() {
-  
-    // richiedo il primo numero
-    axios.get('https://flynn.boolean.careers/exercises/api/random/int').then((res) => {
-        console.log(res);
+    
+    this.getEmails(20);
 
-        // lo assegno alla mia proprietà
-        this.userNumber = res.data.response;
-
-    });
-
-    // richiedo il secondo numero
-    axios.get('https://flynn.boolean.careers/exercises/api/random/int').then((res) => {
-        console.log(res);
-
-        // lo assegno alla mia proprietà
-        this.pcNumber = res.data.response;
-    });
   },
+
+  mounted() {
+    // tutta la pagina è stata completata
+  },
+
+  methods: {
+
+    getEmails(quantity) {
+
+      for(let i = 0; i < quantity; i++) {
+        // dobbiamo fare una chiamata api per ottenere 10 email
+        axios.get('https://flynn.boolean.careers/exercises/api/random/mail?count').then((res) => {
+
+          // prelevo la proprietà che contiene la stringa della mail dall'oggetto
+          // che mi restituisce il metodo get() di axios
+          // e la memorizzo in una variabile
+          const mailReceived = res.data.response;
+
+          // inserisco la variabile nell'array delle mail
+          this.emails.push(mailReceived);
+          
+        });
+
+        
+      }
+      
+    },
+
+  },
+
 
 
 

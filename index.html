@@ -15,10 +15,14 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
   <div id="app">
-    User: {{userNumber}}<br>
-    PC: {{pcNumber}}<br>
+    
+    <ul v-show="emails.length >= 10">
 
-    {{ userNumber > pcNumber ? 'Hai vinto' : 'Il PC ha vinto' }}.
+      <li v-for="email in emails">
+        {{ email }}
+      </li>
+
+    </ul>
 
   </div>
 
